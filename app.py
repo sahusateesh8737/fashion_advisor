@@ -1,25 +1,11 @@
 from flask import Flask, render_template, request, jsonify
 from data_collector import FashionDataCollector
-import threading
-import time
 
 app = Flask(__name__)
 
 # Initialize data collector
 collector = FashionDataCollector()
 fashion_brands = collector.base_brands
-
-def update_brands_periodically():
-    """Update brands data every 24 hours"""
-    while True:
-        global fashion_brands
-        fashion_brands = collector.update_brand_database()
-        time.sleep(86400)  # 24 hours
-
-# Start background data updates
-update_thread = threading.Thread(target=update_brands_periodically)
-update_thread.daemon = True
-update_thread.start()
 
 # Home route to serve the frontend
 @app.route('/')
@@ -65,8 +51,7 @@ def debug_brands():
     })
 
 if __name__ == '__main__':
-    # Local development
     app.run(debug=True)
 else:
-    # Vercel deployment
+    # For Vercel
     app = app
