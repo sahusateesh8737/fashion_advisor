@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustainable Fashion Advisor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Sustainable Fashion Advisor</h1>
+        <p>Find eco-friendly and ethical clothing options tailored to you.</p>
+
+        <!-- Input Form -->
+        <form id="fashion-form">
+            <label for="clothing-type">Clothing Type:</label>
+            <input type="text" id="clothing-type" placeholder="e.g., jacket, shirt" required>
+
+            <label for="budget">Budget ($):</label>
+            <input type="number" id="budget" placeholder="e.g., 50" required>
+
+            <label for="priority">Priority:</label>
+            <select id="priority" required>
+                <option value="no-preference">No Preference</option>
+                <option value="eco-friendly">Eco-Friendly Materials</option>
+                <option value="ethical-labor">Ethical Labor</option>
+                <option value="both">Both</option>
+            </select>
+
+            <button type="submit">Get Recommendations</button>
+        </form>
+
+        <!-- Results Section -->
+        <div id="results">
+            <h2>Your Recommendations</h2>
+            <ul id="recommendation-list"></ul>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
